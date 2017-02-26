@@ -15,10 +15,8 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        String host = "localhost";
-        int port = 8080;
         String jobName = "commons-io";
-        JenkinsJob jenkinsJob = new JenkinsJob(host, port, jobName);
+        JenkinsJob jenkinsJob = new JenkinsJob(jobName);
 
         HttpClient httpClient = new HttpClient(new OkHttpClient.Builder().build());
         JenkinsApiClient jenkinsApiClient = new JenkinsApiClient(httpClient);
@@ -30,10 +28,7 @@ public class Main {
         String commitsResponse = jenkinsApiClient.fetchCommits(jenkinsJob, latestBuildNumber);
         CommitsResponse changes = responseParser.parseCommits(commitsResponse);
 
-        List<String> sourceDirs = Collections.singletonList("src/main/java/");
-        List<String> testDirs = Collections.singletonList("src/test/java/");
-
-        CommitsResponseMapper commitsResponseMapper = new CommitsResponseMapper(sourceDirs, testDirs);
+        CommitsResponseMapper commitsResponseMapper = new CommitsResponseMapper();
         Changes input = commitsResponseMapper.parse(changes);
 
         System.out.println();

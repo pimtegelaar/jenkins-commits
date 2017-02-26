@@ -2,15 +2,12 @@ package com.tegeltech.jenkinscommits;
 
 import com.tegeltech.jenkinscommits.domain.JenkinsJob;
 import com.tegeltech.jenkinscommits.http.HttpClient;
+import lombok.AllArgsConstructor;
 
+@AllArgsConstructor
 public class JenkinsApiClient {
 
     private HttpClient httpClient;
-
-    public JenkinsApiClient(HttpClient httpClient) {
-        this.httpClient = httpClient;
-    }
-
 
     public String fetchCommits(JenkinsJob jenkinsJob, int buildNumber) {
         String url = jenkinsJob.getUrl() + "/" + buildNumber + "/api/xml?wrapper=CommitsResponse&xpath=//changeSet//affectedPath";
