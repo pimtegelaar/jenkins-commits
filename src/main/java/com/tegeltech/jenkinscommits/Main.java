@@ -15,7 +15,7 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        String jobName = "commons-io";
+        String jobName = "coveragedemo";
         JenkinsJob jenkinsJob = new JenkinsJob(jobName);
 
         HttpClient httpClient = new HttpClient(new OkHttpClient.Builder().build());
@@ -23,12 +23,15 @@ public class Main {
 
         String latestBuildResponse = jenkinsApiClient.getLatestBuildNumber(jenkinsJob);
         ResponseMapper responseParser = new ResponseMapper(new XmlMapper());
-        int latestBuildNumber = responseParser.getLastBuildNumber(latestBuildResponse);
+        int latestBuildNumber = 8;// responseParser.getLastBuildNumber(latestBuildResponse);
 
         String commitsResponse = jenkinsApiClient.fetchCommits(jenkinsJob, latestBuildNumber);
         CommitsResponse changes = responseParser.parseCommits(commitsResponse);
 
         CommitsResponseMapper commitsResponseMapper = new CommitsResponseMapper();
+        if (changes.getAffectedPath() == null)
+            return;
+
         Changes input = commitsResponseMapper.parse(changes);
 
         System.out.println();

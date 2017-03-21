@@ -19,6 +19,9 @@ public class HttpClient {
         Call call = httpClient.newCall(request);
         try {
             Response response = call.execute();
+            if(response.code()!=200) {
+                throw new CommunicationException("HTTP " + response.code() + " " + response.message());
+            }
             return response.body().string();
         } catch (IOException e) {
             throw new CommunicationException("Failed to execute request", e);

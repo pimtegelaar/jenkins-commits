@@ -37,11 +37,13 @@ public class CommitsResponseMapperTest {
         Changes result = commitsResponseMapper.parse(commitsResponse);
 
         List<String> changedSources = result.getChangedSources();
-        assertThat(changedSources, hasItems(src1, src2));
-        assertThat(changedSources.size(), is(2));
+        assertThat(changedSources, hasItems("org.apache.commons.io.FilenameUtils"));
+        assertThat(changedSources.size(), is(1));
 
         List<String> changedTests = result.getChangedTests();
-        assertThat(changedTests, hasItems(test1, test2, test3));
+        assertThat(changedTests, hasItems("org.apache.commons.io.monitor.AbstractMonitorTestCase",
+                "org.apache.commons.io.ByteOrderMarkTestCase",
+                "org.apache.commons.io.FileUtilsFileNewerTestCase"));
         assertThat(changedTests.size(), is(3));
     }
 

@@ -24,22 +24,32 @@ public class CommitsResponseMapper {
      */
     public Changes parse(CommitsResponse commitsResponse) {
         Changes changes = new Changes();
-        Arrays.stream(commitsResponse.getAffectedPath()).forEach(path -> {
-            if (isSource(path)) {
-                changes.addSource(path);
-            } else if (isTest(path)) {
-                changes.addTest(path);
-            }
-        });
+        String[] affectedPath = commitsResponse.getAffectedPath();
+        if(affectedPath != null) {
+            Arrays.stream(affectedPath).forEach(path -> {
+                if (isJava(path)) {
+                    for (String dir : sourceDirs) {
+                        if (path.startsWith(dir)) {
+                            changes.addSource(javaPath(path, dir));
+                        }
+                    }
+                    for (String dir : testSourceDirs) {
+                        if (path.startsWith(dir)) {
+                            changes.addTest(javaPath(path, dir));
+                        }
+                    }
+                }
+            });
+        }
         return changes;
     }
 
-    private boolean isSource(String path) {
-        return sourceDirs.stream().anyMatch(path::startsWith);
+    private boolean isJava(String path) {
+        return path.endsWith(".java");
     }
 
-    private boolean isTest(String path) {
-        return testSourceDirs.stream().anyMatch(path::startsWith);
+    private String javaPath(String path, String dir) {
+        return  path.replace(dir,"").replace("/",".").replaceAll("\\.java$","");
     }
 
 }
