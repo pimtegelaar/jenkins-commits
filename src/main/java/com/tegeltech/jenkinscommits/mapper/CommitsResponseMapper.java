@@ -49,7 +49,7 @@ public class CommitsResponseMapper {
     }
 
     private String javaPath(String path, String dir) {
-        return  path.replace(dir,"").replace("/",".").replaceAll("\\.java$","");
+        return  path.replace(dir,"").replaceAll("^/","").replace("/",".").replaceAll("\\.java$","");
     }
 
 }

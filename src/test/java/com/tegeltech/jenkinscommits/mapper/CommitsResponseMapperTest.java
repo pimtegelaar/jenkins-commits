@@ -17,8 +17,8 @@ public class CommitsResponseMapperTest {
 
     @Before
     public void setUp() throws Exception {
-        List<String> sourceDirs = Collections.singletonList("src/main/java/");
-        List<String> testSourceDirs = Collections.singletonList("src/test/java/");
+        List<String> sourceDirs = Collections.singletonList("src/main/java");
+        List<String> testSourceDirs = Collections.singletonList("src/test/java");
 
         commitsResponseMapper = new CommitsResponseMapper(sourceDirs, testSourceDirs);
     }
