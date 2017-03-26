@@ -6,7 +6,7 @@
 
     <groupId>com.tegeltech</groupId>
     <artifactId>jenkins-commits</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.1</version>
 
     <build>
         <plugins>
