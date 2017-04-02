@@ -1,7 +1,7 @@
 package com.tegeltech.jenkinscommits.exception;
 
 /**
- * Indicates that somthing went wrong during an HTTP request.
+ * Indicates that something went wrong during an HTTP request.
  */
 public class CommunicationException extends RuntimeException {
 
