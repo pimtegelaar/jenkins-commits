@@ -24,6 +24,11 @@ public class Main {
         String latestBuildResponse = jenkinsApiClient.getLatestBuildNumber(jenkinsJob);
         ResponseMapper responseParser = new ResponseMapper(new XmlMapper());
         int latestBuildNumber = 8;// responseParser.getLastBuildNumber(latestBuildResponse);
+        System.out.println("Build  number: " + latestBuildNumber);
+
+        String durationResponse = jenkinsApiClient.getDuration(jenkinsJob, latestBuildNumber);
+        int duration = responseParser.getDuration(durationResponse);
+        System.out.println("Build duration: " + duration);
 
         String commitsResponse = jenkinsApiClient.fetchCommits(jenkinsJob, latestBuildNumber);
         CommitsResponse changes = responseParser.parseCommits(commitsResponse);

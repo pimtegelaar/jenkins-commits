@@ -1,6 +1,7 @@
 package com.tegeltech.jenkinscommits.mapper;
 
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import com.tegeltech.jenkinscommits.domain.BuildDuration;
 import com.tegeltech.jenkinscommits.domain.CommitsResponse;
 import com.tegeltech.jenkinscommits.domain.LatestBuild;
 import com.tegeltech.jenkinscommits.exception.InvalidXmlResponseException;
@@ -26,6 +27,15 @@ public class ResponseMapper {
         try {
             LatestBuild latestBuild = mapper.readValue(latestBuildResponse, LatestBuild.class);
             return latestBuild.getNumber();
+        } catch (IOException e) {
+            throw new InvalidXmlResponseException("Something went wrong while parsing the response xml", e);
+        }
+    }
+
+    public int getDuration(String durationResponse) {
+        try {
+            BuildDuration buildDuration = mapper.readValue(durationResponse, BuildDuration.class);
+            return buildDuration.getDuration();
         } catch (IOException e) {
             throw new InvalidXmlResponseException("Something went wrong while parsing the response xml", e);
         }

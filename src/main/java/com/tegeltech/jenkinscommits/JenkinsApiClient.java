@@ -19,4 +19,9 @@ public class JenkinsApiClient {
         return httpClient.get(url);
     }
 
+    public String getDuration(JenkinsJob jenkinsJob, int buildNumber) {
+        String url = jenkinsJob.getUrl() + "/" + buildNumber + "/api/xml?xpath=//duration";
+        return httpClient.get(url);
+    }
+
 }
