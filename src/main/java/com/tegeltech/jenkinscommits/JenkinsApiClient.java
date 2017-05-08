@@ -24,4 +24,9 @@ public class JenkinsApiClient {
         return httpClient.get(url);
     }
 
+    public String getStatus(JenkinsJob jenkinsJob, int buildNumber) {
+        String url = jenkinsJob.getUrl() + "/" + buildNumber + "/api/xml?wrapper=Status&xpath=//result";
+        return httpClient.get(url);
+    }
+
 }
