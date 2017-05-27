@@ -16,7 +16,9 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        String jobName = "commons-io-changes";
+        String jobName = "joda-time-success";
+        if (args.length > 0)
+            jobName = args[0];
         JenkinsJob jenkinsJob = new JenkinsJob(jobName);
 
         HttpClient httpClient = new HttpClient(new OkHttpClient.Builder().build());
