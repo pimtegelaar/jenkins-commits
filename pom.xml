@@ -7,6 +7,31 @@
     <groupId>com.tegeltech</groupId>
     <artifactId>jenkins-commits</artifactId>
     <version>1.0.2-SNAPSHOT</version>
+    <name>Jenkins Commits</name>
+    <description>Client for the Jenkins API that allows you to retrieve details about commits in a build.</description>
+    <url>https://github.com/pimtegelaar/jenkins-commits</url>
+
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Pim Tegelaar</name>
+            <email>pim@tegeltech.com</email>
+            <organization>Tegeltech</organization>
+            <organizationUrl>http:/tegeltech.com</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/pimtegelaar/jenkins-commits.git</connection>
+        <developerConnection>scm:git:ssh://github.com:pimtegelaar/jenkins-commits.git</developerConnection>
+        <url>http://github.com/pimtegelaar/jenkins-commits/tree/master</url>
+    </scm>
 
     <build>
         <plugins>
