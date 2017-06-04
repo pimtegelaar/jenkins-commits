@@ -6,7 +6,7 @@
 
     <groupId>com.tegeltech</groupId>
     <artifactId>jenkins-commits</artifactId>
-    <version>1.0.2-SNAPSHOT</version>
+    <version>1.0.2</version>
     <name>Jenkins Commits</name>
     <description>Client for the Jenkins API that allows you to retrieve details about commits in a build.</description>
     <url>https://github.com/pimtegelaar/jenkins-commits</url>
